@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Titanic Survival Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Titanic Survival Prediction</h1>
+    <form method="post" class="form">
+      <label for="Pclass">Pclass:</label>
+      <input type="number" id="Pclass" name="Pclass" value="3" required />
+
+      <label for="Name">Name:</label>
+      <input type="text" id="Name" name="Name" value="Mr. John Smith" required />
+
+      <label for="Sex">Sex:</label>
+      <select id="Sex" name="Sex">
+        <option value="male">male</option>
+        <option value="female">female</option>
+      </select>
+
+      <label for="Age">Age:</label>
+      <input type="number" step="any" id="Age" name="Age" value="22" />
+
+      <label for="SibSp">SibSp:</label>
+      <input type="number" id="SibSp" name="SibSp" value="1" required />
+
+      <label for="Parch">Parch:</label>
+      <input type="number" id="Parch" name="Parch" value="0" required />
+
+      <label for="Ticket">Ticket:</label>
+      <input type="text" id="Ticket" name="Ticket" value="A/5 21171" />
+
+      <label for="Fare">Fare:</label>
+      <input type="number" step="any" id="Fare" name="Fare" value="7.25" />
+
+      <label for="Cabin">Cabin:</label>
+      <input type="text" id="Cabin" name="Cabin" value="" />
+
+      <label for="Embarked">Embarked:</label>
+        <select id="Embarked" name="Embarked" required>
+            <option value="S">S</option>
+            <option value="C">C</option>
+            <option value="Q">Q</option>
+        </select><br/>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is not none %}
+    <div class="result">
+      <h2>Prediction Result</h2>
+      <p><strong>Survival Prediction:</strong> {{ 'Survived' if prediction == 1 else 'Did Not Survive' }}</p>
+      <p><strong>Survival Probability:</strong> {{ probability | round(3) }}</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
